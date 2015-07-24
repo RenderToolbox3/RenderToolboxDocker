@@ -88,3 +88,12 @@ If not, here's how to build it.  Note that these instructions use my (Ben's) Doc
  - `sudo docker push ninjaben/render-toolbox-docker-ptb-rtb:latest`
 
 # Run it!
+Once all the layers are in place, you should be able to launch a Docker container with all the pieces in place for RenderToolbox3.
+ - `sudo docker run -t -i ninjaben/render-toolbox-docker-ptb-rtb:latest "/bin/bash"`
+
+Depending on how you got here, Docker might take some time to download the other layers.
+
+Once you're in, you should have command line access inside the Docker container.  Try launching Matlab with a RenderToolbox3 command:
+ - `matlab -nodesktop -nosplash -r "RenderToolbox3InstallationTest"`
+
+It should render some tests scenes!
