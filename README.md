@@ -17,7 +17,9 @@ If you are running Docker in the cloud, you should do all this once, then save a
 
 The instructions below should work for Ubuntu and Amazon Linux.
 
-# You need to get a few dependencies for this to work.
+# Dependencies
+
+You need to get a few dependencies for this to work.
 
 To get Docker:
  - [install Docker](https://docs.docker.com/installation/)
@@ -36,7 +38,7 @@ To get the Amazon command line tool (Ubuntu only)
 
 Amazon linux has the command line tool already.
 
-Then set up your AWS account and enter your credentials:
+Set up your AWS account and configure the command line tool with your credentials:
  - `aws configure`
  - # enter your credentials
 
