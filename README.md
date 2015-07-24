@@ -77,7 +77,14 @@ If not, here's how to build it.  Note that these instructions use my (Ben's) Doc
  - # enter Docker Hub credientials
  - `sudo docker push ninjaben/render-toolbox-docker-pbrt-v2-spectral:latest`
 
-
 # 4. Psychtoolbox and RenderToolbox3 layer
+This layer might already live on Docker Hub.  In that case, you're all set!
+
+If not, here's how to build it.  Note that these instructions use my (Ben's) Docker Hub account name `ninjaben`.  You might need to change this to your own account name.
+ - `cd render-toolbox-docker/ptb-rtb`
+ - `sudo docker build -t ninjaben/render-toolbox-docker-ptb-rtb:latest .`
+ - `sudo docker login`
+ - # enter Docker Hub credientials
+ - `sudo docker push ninjaben/render-toolbox-docker-ptb-rtb:latest`
 
 # Run it!
