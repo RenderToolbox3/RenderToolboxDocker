@@ -23,7 +23,7 @@ You need to get a few dependencies for this to work.
 
 To get Docker:
  - [install Docker](https://docs.docker.com/installation/)
-   - on ubuntu (might be out-dated, here is an [alternative](https://github.com/DavidBrainard/RenderToolboxDevelop/wiki/Matlab-on-Docker-and-EC2#ssh-to-ec2-instance-and-install-docker-with-support-for-large-containers)): `sudo apt-get install docker docker.io`
+   - on ubuntu: make sure Docker is up to date and able to accommodate large images.  We have some instructions [here](https://github.com/DavidBrainard/RenderToolboxDevelop/wiki/Matlab-on-Docker-and-EC2#ssh-to-ec2-instance-and-install-docker-with-support-for-large-containers)).
    - on amazon linux: `sudo yum install docker`
  - `sudo service docker start`
 
@@ -47,6 +47,15 @@ To get this repository:
  - `cd render-toolbox-docker`
 
 # 1. Matlab layer
+The Matlab layer is unusual.  It's a docker image that I (Ben) created by interactively installing Matlab inside Docker.  The result is about 16GB, which is too big for normal Docker workflows involving Docker Hub.
+
+Instead, I manually saved this image and put it on Amazon s3.
+
+To get this image for yourself, you download the image and tell Docker to load it:
+ - `aws s3 cp s3://render-toolbox-docker-matlab/docker-matlab-activated.tar docker-matlab-activated.tar`
+ - `sudo docker load docker-matlab-activated.tar`
+
+Now Docker knows about our Matlab layer, which we will build upon for the next step.
 
 # 2. Mitsuba layer
 
