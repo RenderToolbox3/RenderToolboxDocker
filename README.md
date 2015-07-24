@@ -40,28 +40,16 @@ Then set up your AWS account and enter your credentials:
  - `aws configure`
  - # enter your credentials
 
-
 To get this repository:
  - `git clone https://github.com/benjamin-heasly/render-toolbox-docker.git`
  - `cd render-toolbox-docker`
 
-# Run the Docker image
+# 1. Matlab layer
 
-Here's how to launch a Docker container from the image, and get command line access:
- - `sudo docker run -t -i my-name/mitsuba-docker:latest "/bin/bash"`
+# 2. Mitsuba layer
 
-Once you're in, check that you can run multi-spectral and rgb mitsuba and mitsuba importer:
- - `mitsuba-multi`
- - `mmtsimport-multi`
- - `mitsuba-rgb`
- - `mmtsimport-rgb`
+# 3. pbrt-v2-spectral layer
 
-# Automated Docker Hub builds?
+# 4. Psychtoolbox and RenderToolbox3 layer
 
-Since the `Dockerfile` is nearly self-contained, it would make a nice automated build on Docker Hub.  That way, you wouldn't have to build the image yourself.
-
-Unfortunately, the Mitsuba build with scons takes more memory than Docker Hub provisions for automated builds (I think you get 3GB).  So for now you just have to DIY.
-
-If you have a Docker Hub account, you can push up the image manually, then use it from anywhere.  That way, you only have to build the image once:
- - `sudo docker login`
- - `sudo docker push my-name/mitsuba-docker:latest`
+# Run it!
