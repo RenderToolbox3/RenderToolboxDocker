@@ -55,11 +55,28 @@ To get this image for yourself, you download the image and tell Docker to load i
  - `aws s3 cp s3://render-toolbox-docker-matlab/docker-matlab-activated.tar docker-matlab-activated.tar`
  - `sudo docker load docker-matlab-activated.tar`
 
-Now Docker knows about our Matlab layer, which we will build upon for the next step.
+Now Docker knows about our Matlab layer, which we will build upon in the next step.
 
 # 2. Mitsuba layer
+This layer might already live on Docker Hub.  In that case, you're all set!
+
+If not, here's how to build it.  Note that these instructions use my (Ben's) Docker Hub account name `ninjaben`.  You might need to change this to your own account name.
+ - `cd render-toolbox-docker/mitsuba`
+ - `sudo docker build -t ninjaben/render-toolbox-docker-mitsuba:latest .`
+ - `sudo docker login`
+ - # enter Docker Hub credientials
+ - `sudo docker push ninjaben/render-toolbox-docker-mitsuba:latest`
 
 # 3. pbrt-v2-spectral layer
+This layer might already live on Docker Hub.  In that case, you're all set!
+
+If not, here's how to build it.  Note that these instructions use my (Ben's) Docker Hub account name `ninjaben`.  You might need to change this to your own account name.
+ - `cd render-toolbox-docker/pbrt-v2-spectral`
+ - `sudo docker build -t ninjaben/render-toolbox-docker-pbrt-v2-spectral:latest .`
+ - `sudo docker login`
+ - # enter Docker Hub credientials
+ - `sudo docker push ninjaben/render-toolbox-docker-pbrt-v2-spectral:latest`
+
 
 # 4. Psychtoolbox and RenderToolbox3 layer
 
