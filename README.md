@@ -3,27 +3,47 @@ Dockerfile and instructions for setting up RenderToolbox3 inside Docker
 
 # Greetings!
 
-The `Dockerfile` in this repository represents a complete set of instructions for building Mitsuba on Ubuntu.  You can use this to create a Docker image with Mitsuba in it.
+This repository contains a few Dockerfiles and other configuration for getting RenderToolbox3 to run inside Docker.
 
-You can also consult this to figure out how to build Mitsuba.  The RUN commands are thing you can run on the command line.  Some of them will require `sudo`.
+There are a few Dockerfiles organized as layers.  These are intended to separate the configuration of various parts.  They layers are:
+ 1. Matlab
+ 1. Mitsuba
+ 1. pbrt-v2-spectral
+ 1. Psychtoolbox and RenderToolbox3
+ 
+You'll have to download or build the layers in order, before you can finally live the Docker dream.  After you do this once, Docker will have all the layers it needs cached locally, so you can reuse them quickly.
 
-**Note**: The Mitsuba build with scons takes a while and a lot of memory.  You probably want a newish machine with 4GB+ of RAM.  Or run all of this on a beefy Amazon EC2 instance!
+If you are running Docker in the cloud, you should do all this once, then save a machine image (like an AMI on Amazon) so that you can have all these layers cached locally in that machine image.  This should allow you to quickly fire up rendering and image processing in the cloud.
 
-For me (Ben) the build ran out of memory on an Amazon *t2.micro* instance.  On an *m4.xlarge* instance it succeeded after about 35 minutes.
+The instructions below should work for Ubuntu and Amazon Linux.
 
-# Build the Docker image
+# You need to get a few dependencies for this to work.
 
-Here's how to build the image in the first place:
+To get Docker:
  - [install Docker](https://docs.docker.com/installation/)
    - on ubuntu (might be out-dated, here is an [alternative](https://github.com/DavidBrainard/RenderToolboxDevelop/wiki/Matlab-on-Docker-and-EC2#ssh-to-ec2-instance-and-install-docker-with-support-for-large-containers)): `sudo apt-get install docker docker.io`
    - on amazon linux: `sudo yum install docker`
  - `sudo service docker start`
+
+To get Git: 
  - [install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
    - on ubuntu: `sudo apt-get install git`
    - on amazon linux: `sudo yum install git`
- - `git clone https://github.com/benjamin-heasly/mitsuba-docker.git`
- - `cd mitsuba-docker`
- - `sudo docker build -t my-name/mitsuba-docker:latest .`
+
+To get the Amazon command line tool (Ubuntu only)
+ - sudo apt-get install python-pip
+ - sudo pip install awscli
+
+Amazon linux has the command line tool already.
+
+Then set up your AWS account and enter your credentials:
+ - `aws configure`
+ - # enter your credentials
+
+
+To get this repository:
+ - `git clone https://github.com/benjamin-heasly/render-toolbox-docker.git`
+ - `cd render-toolbox-docker`
 
 # Run the Docker image
 
