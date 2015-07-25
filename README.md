@@ -53,7 +53,8 @@ Instead, I manually saved this image and put it on Amazon s3.
 
 To get this image for yourself, you download the image and tell Docker to load it:
  - `aws s3 cp s3://render-toolbox-docker-matlab/docker-matlab-activated.tar docker-matlab-activated.tar`
- - `sudo docker load docker-matlab-activated.tar`
+ - `sudo docker load --input docker-matlab-activated.tar`
+ - `rm docker-matlab-activated.tar`
 
 Now Docker knows about our Matlab layer, which we will build upon in the next step.
 
