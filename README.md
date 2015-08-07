@@ -32,9 +32,11 @@ To get Git:
    - on ubuntu: `sudo apt-get install git`
    - on amazon linux: `sudo yum install git`
 
-To get the Amazon command line tool (Ubuntu only)
- - sudo apt-get install python-pip
- - sudo pip install awscli
+To get the Amazon command line tool
+ - on ubuntu:
+   - `sudo apt-get install python-pip`
+   - `sudo pip install awscli`
+ - on amazon linux: already installed
 
 Amazon linux has the command line tool already.
 
