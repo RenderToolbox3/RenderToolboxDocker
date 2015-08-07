@@ -18,9 +18,7 @@ If you are running Docker in the cloud, you should do all this once, then save a
 ### Linux Flavors
 The instructions here should work for Ubuntu.
 
-The instructions *almost* work on Amazon Linux, but we would have to figure out how to install `aufs` on Amazon Linux, to support large Docker containers.  This is because the Matlab layer is very large, which is because Matlab is very large.
-
-S for now, if you're choosing a Linux instance type, choose Ubuntu.
+The instructions *almost* work on Amazon Linux, but we would have to figure out how to install `aufs` on Amazon Linux.  `aufs` is needed for large Docker images like our Matlab layer.  This layer is large because Matlab is large.
 
 # Dependencies
 
