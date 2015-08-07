@@ -50,12 +50,13 @@ RUN echo 'xpra start :0' > /etc/bash.bashrc
 ENV DISPLAY :0
 
 ### build and install RBG Mitsuba
+WORKDIR /mitsuba
 RUN hg clone --insecure https://www.mitsuba-renderer.org/hg/mitsuba
-WORKDIR mitsuba
+WORKDIR /mitsuba/mitsuba
 RUN cp build/config-linux-gcc.py config.py \
     && scons \
-    && mkdir /mitsuba-rgb \
-    && cp -r dist/* /mitsuba-rgb
+    && mkdir /mitsuba/mitsuba-rgb \
+    && cp -r dist/* /mitsuba/mitsuba-rgb
 
 ### edit mitsuba source and config for 31 spectrum bands in 395-705nm
 RUN sed 's/SAMPLES=[0-9]*/SAMPLES=31/' build/config-linux-gcc.py > config.py
@@ -65,18 +66,18 @@ RUN sed -e 's/SPECTRUM_MIN_WAVELENGTH[ ^I]*[0-9]*$/SPECTRUM_MIN_WAVELENGTH   395
 
 ### build and install multispectral Mitsuba
 RUN scons \
-    && mkdir /mitsuba-multi \
-    && cp -r dist/* /mitsuba-multi
+    && mkdir /mitsuba/mitsuba-multi \
+    && cp -r dist/* /mitsuba/mitsuba-multi
 
 ### make scripts for running each mitsuba flavor
 WORKDIR /usr/local/bin
-RUN echo 'LD_LIBRARY_PATH=/mitsuba-multi /mitsuba-multi/mitsuba $@' > mitsuba-multi \
+RUN echo 'LD_LIBRARY_PATH=/mitsuba/mitsuba-multi /mitsuba/mitsuba-multi/mitsuba $@' > mitsuba-multi \
     && chmod +x mitsuba-multi
-RUN echo 'LD_LIBRARY_PATH=/mitsuba-multi /mitsuba-multi/mtsimport $@' > mtsimport-multi \
+RUN echo 'LD_LIBRARY_PATH=/mitsuba/mitsuba-multi /mitsuba/mitsuba-multi/mtsimport $@' > mtsimport-multi \
     && chmod +x mtsimport-multi
-RUN echo 'LD_LIBRARY_PATH=/mitsuba-rgb /mitsuba-rgb/mitsuba $@' > mitsuba-rgb \
+RUN echo 'LD_LIBRARY_PATH=/mitsuba/mitsuba-rgb /mitsuba/mitsuba-rgb/mitsuba $@' > mitsuba-rgb \
     && chmod +x mitsuba-rgb
-RUN echo 'LD_LIBRARY_PATH=/mitsuba-rgb /mitsuba-rgb/mtsimport $@' > mtsimport-rgb \
+RUN echo 'LD_LIBRARY_PATH=/mitsuba/mitsuba-rgb /mitsuba/mitsuba-rgb/mtsimport $@' > mtsimport-rgb \
     && chmod +x mtsimport-rgb
 
 WORKDIR /home/docker
