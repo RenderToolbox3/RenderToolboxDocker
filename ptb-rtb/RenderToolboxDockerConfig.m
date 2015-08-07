@@ -34,7 +34,9 @@ CleanMatlabPath;
 InitializeRenderToolbox(true);
 
 %% Tell RenderToolbox3 where to save outputs.
-% choose Matlab's default "user folder"
+matlabUserPath = '/home/docker/matlab/';
+mkdir(matlabUserPath);
+userpath(matlabUserPath);
 myFolder = fullfile(GetUserFolder(), 'render-toolbox');
 
 % or choose any folder that you want RenderToolbox3 to write to
