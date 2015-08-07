@@ -25,7 +25,7 @@ To get Docker:
  - [install Docker](https://docs.docker.com/installation/)
    - on ubuntu: make sure Docker is up to date and able to accommodate large images.  We have some instructions [here](https://github.com/DavidBrainard/RenderToolboxDevelop/wiki/Matlab-on-Docker-and-EC2#ssh-to-ec2-instance-and-install-docker-with-support-for-large-containers)).
    - on amazon linux: `sudo yum install docker`
- - `sudo service docker start`m
+ - `sudo service docker start`
 
 To get Git: 
  - [install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
