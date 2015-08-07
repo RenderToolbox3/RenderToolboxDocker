@@ -110,6 +110,6 @@ Once all the layers are in place, you should be able to launch a Docker containe
 Depending on how you got here, Docker might take some time to download the other layers.
 
 Once you're in, you should have command line access inside the Docker container.  Try launching Matlab with a RenderToolbox3 command:
- - `matlab -nodesktop -nosplash -r RenderToolboxDockerConfig, RenderToolbox3InstallationTest, exit`
+ - `matlab -nodesktop -nosplash -r "RenderToolboxDockerConfig, RenderToolbox3InstallationTest, exit"`
 
 It should render some tests scenes!
