@@ -71,7 +71,7 @@ RUN scons \
 ### make scripts for running each mitsuba flavor
 WORKDIR /usr/local/bin
 RUN echo "LD_LIBRARY_PATH=/mitsuba-multi /mitsuba-multi/mitsuba" > mitsuba-multi \
-    && chmod +x mitusba-multi
+    && chmod +x mitsuba-multi
 RUN echo "LD_LIBRARY_PATH=/mitsuba-multi /mitsuba-multi/mtsimport" > mtsimport-multi \
     && chmod +x mtsimport-multi
 RUN echo "LD_LIBRARY_PATH=/mitsuba-rgb /mitsuba-rgb/mitsuba" > mitsuba-rgb \
