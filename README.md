@@ -5,7 +5,7 @@ Dockerfile and instructions for setting up RenderToolbox3 inside Docker
 
 This repository contains a few Dockerfiles and other configuration for getting RenderToolbox3 to run inside Docker.
 
-There are a few Dockerfiles organized as layers.  These are intended to separate the configuration of various parts.  They layers are:
+There are a few Dockerfiles organized as layers.  These are intended to separate the configuration of various parts.  The layers are:
  1. Matlab
  1. Mitsuba
  1. pbrt-v2-spectral
