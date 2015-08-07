@@ -61,12 +61,14 @@ Now Docker knows about our Matlab layer, which we will build upon in the next st
 # 2. Mitsuba layer
 This layer might already live on Docker Hub.  In that case, you're all set!
 
-If not, here's how to build it.  Note that these instructions use my (Ben's) Docker Hub account name `ninjaben`.  You might need to change this to your own account name.
+If not, here's how to build it.  Note that these instructions use my (Ben's) Docker Hub account name `ninjaben`.  You might need to change this to your own account name*.
  - `cd render-toolbox-docker/mitsuba`
  - `sudo docker build -t ninjaben/render-toolbox-docker-mitsuba:latest .`
  - `sudo docker login`
  - # enter Docker Hub credientials
  - `sudo docker push ninjaben/render-toolbox-docker-mitsuba:latest`
+
+* If you do change the user name, you must also change the user name at the top of the Dockerfile to match.  For example, change `FROM ninjaben/matlab:activated` to `FROM YOUR_NAME/matlab:activated`.
 
 # 3. pbrt-v2-spectral layer
 This layer might already live on Docker Hub.  In that case, you're all set!
