@@ -15,7 +15,14 @@ You'll have to download or build the layers in order, before you can finally liv
 
 If you are running Docker in the cloud, you should do all this once, then save a machine image (like an AMI on Amazon) so that you can have all these layers cached locally in that machine image.  This should allow you to quickly fire up rendering and image processing in the cloud.
 
-The instructions below should work for Ubuntu.  They almost work on Amazon Linux, but we would have to figure out how to install `aufs` on Amazon Linux, to support large Docker containers.  So if you're choosing a cloud instance type, go fo Ubuntu.
+### Linux Flavors
+The instructions below should work for Ubuntu.
+
+The instructions almost work on Amazon Linux, but we would have to figure out how to install `aufs` on Amazon Linux, to support large Docker containers.
+
+Or, we could figure out how to shrink the Matlab layer so we don't have to create such a large Docker container.
+
+For now, if you're choosing a cloud instance type, go fo Ubuntu.
 
 # Dependencies
 
