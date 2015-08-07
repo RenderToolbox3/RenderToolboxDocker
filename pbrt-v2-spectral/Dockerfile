@@ -20,13 +20,12 @@ RUN apt-get update \
     && apt-get autoremove
 
 ### build and install PBRT
+WORKDIR /pbrt
 RUN git clone https://github.com/ydnality/pbrt-v2-spectral.git
-WORKDIR pbrt-v2-spectral/src
+WORKDIR /pbrt/pbrt-v2-spectral/src
 RUN make
 
 ### make a script for running PBRT
 WORKDIR /usr/local/bin
-RUN echo '/home/docker/pbrt-v2-spectral/src/bin/pbrt $@' > pbrt \
+RUN echo '/pbrt/pbrt-v2-spectral/src/bin/pbrt $@' > pbrt \
     && chmod +x pbrt
-
-WORKDIR /home/docker
