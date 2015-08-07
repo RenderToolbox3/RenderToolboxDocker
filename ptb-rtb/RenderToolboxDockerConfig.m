@@ -26,13 +26,13 @@
 %
 
 %% Tell RenderToolbox3 where to save outputs.
-matlabUserPath = '/home/docker/matlab/';
+matlabUserPath = '/matlab-work';
 mkdir(matlabUserPath);
 userpath(matlabUserPath);
 
 %% Add toolboxes to the Matlab path.
-addpath(genpath('/home/docker/Psychtoolbox-3'));
-addpath(genpath('/home/docker/RenderToolbox3'));
+addpath(genpath('/psychtoolbox'));
+addpath(genpath('/render-toolbox'));
 CleanMatlabPath();
 
 %% Start with RenderToolbox3 "fresh out of the box" configuration.
