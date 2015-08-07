@@ -1,4 +1,4 @@
-FROM FROM ninjaben/matlab:activated
+FROM ninjaben/matlab:activated
 
 MAINTAINER Ben Heasly <benjamin.heasly@gmail.com>
 
