@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ninjaben/render-toolbox-docker-mitsuba:latest
 
 MAINTAINER Ben Heasly <benjamin.heasly@gmail.com>
 
