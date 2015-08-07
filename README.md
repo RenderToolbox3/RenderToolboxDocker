@@ -86,7 +86,7 @@ This build should only take a few minutes.
  This should result in source code and builds under the `/pbrt` folder, as well as an executable script in `/usr/local/bin`.
 
 # 4. Psychtoolbox and RenderToolbox3 layer
-The pbrt-rtb layer will sit on top of the pbrt-v2-spectral layer.  Building this layer will add Psychtoolbox, RenderToolbox3, and a RenderToolbox3 configuration script suitable for this Docker environment.
+The pbrt-rtb layer will sit on top of the pbrt-v2-spectral layer.  Building this layer will add Psychtoolbox to the `/psychtoolbox` folder, and RenderToolbox3 to the `/render-toolbox` folder.
 
 This build should only take a few minutes.
  - `cd render-toolbox-docker/ptb-rtb`
