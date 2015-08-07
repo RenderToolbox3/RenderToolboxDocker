@@ -26,6 +26,8 @@ S for now, if you're choosing a Linux instance type, choose Ubuntu.
 
 On your local machine or cloud instance, you need to get a few dependencies.
 
+First of all, you'll need at least 30GB of free space.
+
 To get Docker:
  - [install Docker](https://docs.docker.com/installation/)
    - on ubuntu: make sure Docker is up to date and able to accommodate large images.  We have some instructions [here](https://github.com/DavidBrainard/RenderToolboxDevelop/wiki/Matlab-on-Docker-and-EC2#ssh-to-ec2-instance-and-install-docker-with-support-for-large-containers)).
@@ -68,57 +70,58 @@ Now Docker knows about our Matlab layer, which we will build upon in the next st
 # 2. Mitsuba layer
 The Mitsuba layer will sit on top of the Matlab layer.  Building this layer will add the Mitsuba source code and two builds of Mitsuba -- one for multispectral rendering and one for RGB rendering.
 
-The build may take a while because compiling Mitsuba takes a while, and we do it twice. 
+The build may take many minutes because compiling Mitsuba takes a while, and we do it twice. 
  - `cd render-toolbox-docker/mitsuba`
  - `sudo docker build -t ninjaben/render-toolbox-docker-mitsuba:latest .`
 
 This should result in source code and builds under the `/mitsuba` folder, as well as a few executable scripts in `/usr/local/bin`.
 
 # 3. pbrt-v2-spectral layer
-The 
+The pbrt-v2-spectral layer will sit on top of the Mitsuba layer.  Building this layer will add a multi-spectral variant of the PBRT source and a multi-spectral build of PBRT.
 
-If not, here's how to build it.  Note that these instructions use my (Ben's) Docker Hub account name `ninjaben`.  You might need to change this to your own account name†.
+This build should only take a few minutes.
  - `cd render-toolbox-docker/pbrt-v2-spectral`
  - `sudo docker build -t ninjaben/render-toolbox-docker-pbrt-v2-spectral:latest .`
- - `sudo docker login`
- - # enter Docker Hub credientials
- - `sudo docker push ninjaben/render-toolbox-docker-pbrt-v2-spectral:latest`
-
-† If you do change the user name, you must also change the user name at the top of the Dockerfile to match.  For example, change `FROM ninjaben/render-toolbox-docker-mitsuba:latest` to `FROM YOUR_NAME/render-toolbox-docker-mitsuba:latest`.
-
+ 
+ This should result in source code and builds under the `/pbrt` folder, as well as an executable script in `/usr/local/bin`.
 
 # 4. Psychtoolbox and RenderToolbox3 layer
-This layer might already live on Docker Hub.  In that case, you're all set!
+The pbrt-rtb layer will sit on top of the pbrt-v2-spectral layer.  Building this layer will add Psychtoolbox, RenderToolbox3, and a RenderToolbox3 configuration script suitable for this Docker environment.
 
-If not, here's how to build it.  Note that these instructions use my (Ben's) Docker Hub account name `ninjaben`.  You might need to change this to your own account name†.
+This build should only take a few minutes.
  - `cd render-toolbox-docker/ptb-rtb`
  - `sudo docker build -t ninjaben/render-toolbox-docker-ptb-rtb:latest .`
- - `sudo docker login`
- - # enter Docker Hub credientials
- - `sudo docker push ninjaben/render-toolbox-docker-ptb-rtb:latest`
-
-† If you do change the user name, you must also change the user name at the top of the Dockerfile to match.  For example, change `FROM ninjaben/render-toolbox-docker-pbrt-v2-spectral:latest` to `FROM YOUR_NAME/render-toolbox-docker-pbrt-v2-spectral:latest`.
 
 # Run it!
-Once all the layers are in place, you should be able to launch a Docker container with all the pieces in place for RenderToolbox3.
+Once all four layers are in place, you should be able to launch a Docker container based on the last layer.
+
+This should launch a docker container based on our last layer, and give you command line access inside it.
  - `sudo docker run -t -i --mac-address e4:ce:8f:60:8f:0a -v ~/render-toolbox:/home/docker/matlab/render-toolbox ninjaben/render-toolbox-docker-ptb-rtb:latest "/bin/bash"`
 
-Depending on how you got here, Docker might take some time to download the other layers.
+Note: the `--mac-address e4:ce:8f:60:8f:0a` part is necessary to work with our Matlab license.
 
-Once you're in, you should have command line access inside the Docker container.  Try launching Matlab with a RenderToolbox3 command:
+Note: the `-v ~/render-toolbox:/home/docker/matlab/render-toolbox` part gives the Docker container access to the host file system.  This will allow you to access RenderToolbox3 outputs.
+
+Once you're in, you should have command line access inside the Docker container.  Try launching Matlab.  The following command will launch a non-interactive Matlab session.  It should run some RenderToolbox3 configuration, render some tests scenes, then exit:
  - `matlab -nodesktop -nosplash -r "RenderToolboxDockerConfig, RenderToolbox3InstallationTest, exit"`
 
-It should render some tests scenes!  The renderer output should appear in the folder `~/render-toolbox` on yout host machine.
+When this is done, you can exit the Docker container and let it shut down.
+ - `exit`
 
-You can push the renderings to S3.  From there you could download them and view them locally.
+# View the output
+The test scene output should appear in your host file system in the folder `~/render-toolbox`.
 
-First, `exit` the running Docker container.
+If you're doing all this on your local workstation, you can go and look at the rendered images directly!
 
-Now tar up the renderings and push them to S3:
+# Get the Output
+If you're doing all this from a cloud instance, you need a way to download the rendered images before you can look at them.
+
+You can push the rendered images to an Amazon S3 "bucket".  :
  - `cd ~`
  - `tar -czpf test-renderings.tar.gz render-toolbox/`
  - `aws s3 cp test-renderings.tar.gz s3://render-toolbox-test-output/docker/test-renderings.tar.gz`
 
-In this example, `render-toolbox-test-output` is an S3 "bucket", which you need permission to write to.  You may need to create your own bucket ans use your own bucket name.  For example:
- - `aws s3 cp test-renderings.tar.gz s3://YOUR_OWN_BUCKET/docker/test-renderings.tar.gz`
+Now you can easily download the `.tar` them from the S3 web interface.
 
+Note: in this example, `render-toolbox-test-output` is an S3 "bucket", which I (Ben) have permission to write to.  You should create your own bucket ans use your own bucket name.  For example:
+ - `aws s3 cp test-renderings.tar.gz s3://YOUR_OWN_BUCKET/docker/test-renderings.tar.gz`
