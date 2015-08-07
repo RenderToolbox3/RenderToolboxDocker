@@ -25,22 +25,21 @@
 % CompareAllExampleScenes() to check example renderings for correctness.
 %
 
-%% add toolboxes to the path
+%% Tell RenderToolbox3 where to save outputs.
+matlabUserPath = '/home/docker/matlab/';
+mkdir(matlabUserPath);
+userpath(matlabUserPath);
+
+%% Add toolboxes to the Matlab path.
 addpath(genpath('/home/docker/Psychtoolbox-3'));
 addpath(genpath('/home/docker/RenderToolbox3'));
-CleanMatlabPath;
+CleanMatlabPath();
 
 %% Start with RenderToolbox3 "fresh out of the box" configuration.
 InitializeRenderToolbox(true);
 
 %% Tell RenderToolbox3 where to save outputs.
-matlabUserPath = '/home/docker/matlab/';
-mkdir(matlabUserPath);
-userpath(matlabUserPath);
 myFolder = fullfile(GetUserFolder(), 'render-toolbox');
-
-% or choose any folder that you want RenderToolbox3 to write to
-%myFolder = 'choose/your/output/folder';
 
 % set folders for temp, data, and image outputs
 setpref('RenderToolbox3', 'workingFolder', myFolder);
