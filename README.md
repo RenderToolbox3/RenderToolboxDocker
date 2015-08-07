@@ -112,4 +112,17 @@ Depending on how you got here, Docker might take some time to download the other
 Once you're in, you should have command line access inside the Docker container.  Try launching Matlab with a RenderToolbox3 command:
  - `matlab -nodesktop -nosplash -r "RenderToolboxDockerConfig, RenderToolbox3InstallationTest, exit"`
 
-It should render some tests scenes!
+It should render some tests scenes!  The renderer output should appear in the folder `~/render-toolbox` on yout host machine.
+
+You can push the renderings to S3.  From there you could download them and view them locally.
+
+First, `exit` the running Docker container.
+
+Now tar up the renderings and push them to S3:
+ - `cd ~`
+ - `tar -czpf test-renderings.tar.gz render-toolbox/`
+ - `aws s3 cp test-renderings.tar.gz s3://render-toolbox-test-output/docker/test-renderings.tar.gz`
+
+In this example, `render-toolbox-test-output` is an S3 "bucket", which you need permission to write to.  You may need to create your own bucket ans use your own bucket name.  For example:
+ - `aws s3 cp test-renderings.tar.gz s3://YOUR_OWN_BUCKET/docker/test-renderings.tar.gz`
+
