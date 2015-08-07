@@ -10,6 +10,3 @@ RUN git clone https://github.com/DavidBrainard/RenderToolbox3
 
 ### add config file
 ADD RenderToolboxDockerConfig.m RenderToolboxDockerConfig.m
-
-### configure RTB3
-RUN matlab -nospash -nodesktop -r RenderToolboxDockerConfig
