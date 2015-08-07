@@ -60,7 +60,7 @@ radiometricScaleFactor = 0.0795827427;
 
 % use the default executable paths
 myMistubaExecutable = '/usr/local/bin/mitsuba-multi';
-myMistubaImporter = '/usr/local/bin/mtsimport-milti';
+myMistubaImporter = '/usr/local/bin/mtsimport-multi';
 
 % save preferences for Mitsuba
 setpref('Mitsuba', 'adjustments', adjustmentsFile);
