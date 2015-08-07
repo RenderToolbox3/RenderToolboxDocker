@@ -25,6 +25,11 @@
 % CompareAllExampleScenes() to check example renderings for correctness.
 %
 
+%% add toolboxes to the path
+addpath(genpath('/home/docker/Psychtoolbox-3'));
+addpath(genpath('/home/docker/RenderToolbox3'));
+CleanMatlabPath;
+
 %% Start with RenderToolbox3 "fresh out of the box" configuration.
 InitializeRenderToolbox(true);
 
