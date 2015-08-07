@@ -95,5 +95,8 @@ setpref('PBRT', 'radiometricScaleFactor', radiometricScaleFactor);
 setpref('PBRT', 'S', S);
 setpref('PBRT', 'executable', myPBRT);
 
+% Compile our mex-function for reading Open-EXR images.
+MakeReadMultichannelEXR;
+
 %% Set Up Another renderer.
 % renderer-specific preferences for any other renderers...
