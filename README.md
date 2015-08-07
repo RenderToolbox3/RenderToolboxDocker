@@ -36,9 +36,7 @@ To get the Amazon command line tool
  - on ubuntu:
    - `sudo apt-get install python-pip`
    - `sudo pip install awscli`
- - on amazon linux: already installed
-
-Amazon linux has the command line tool already.
+ - on amazon linux: it's already installed for you
 
 Set up your AWS account and configure the command line tool with your credentials:
  - `aws configure`
