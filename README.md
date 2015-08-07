@@ -105,7 +105,7 @@ If not, here's how to build it.  Note that these instructions use my (Ben's) Doc
 
 # Run it!
 Once all the layers are in place, you should be able to launch a Docker container with all the pieces in place for RenderToolbox3.
- - `sudo docker run -t -i --mac-address e4:ce:8f:60:8f:0a ninjaben/render-toolbox-docker-ptb-rtb:latest "/bin/bash"`
+ - `sudo docker run -t -i --mac-address e4:ce:8f:60:8f:0a -v ~/render-toolbox:/home/docker/matlab/render-toolbox ninjaben/render-toolbox-docker-ptb-rtb:latest "/bin/bash"`
 
 Depending on how you got here, Docker might take some time to download the other layers.
 
