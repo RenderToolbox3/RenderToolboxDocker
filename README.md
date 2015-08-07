@@ -16,17 +16,15 @@ You'll have to download or build the layers in order, before you can finally liv
 If you are running Docker in the cloud, you should do all this once, then save a machine image (like an AMI on Amazon) so that you can have all these layers cached locally in that machine image.  This should allow you to quickly fire up rendering and image processing in the cloud.
 
 ### Linux Flavors
-The instructions below should work for Ubuntu.
+The instructions here should work for Ubuntu.
 
-The instructions almost work on Amazon Linux, but we would have to figure out how to install `aufs` on Amazon Linux, to support large Docker containers.
+The instructions *almost* work on Amazon Linux, but we would have to figure out how to install `aufs` on Amazon Linux, to support large Docker containers.  This is because the Matlab layer is very large, which is because Matlab is very large.
 
-Or, we could figure out how to shrink the Matlab layer so we don't have to create such a large Docker container.
-
-For now, if you're choosing a cloud instance type, go fo Ubuntu.
+S for now, if you're choosing a Linux instance type, choose Ubuntu.
 
 # Dependencies
 
-You need to get a few dependencies for this to work.
+On your local machine or cloud instance, you need to get a few dependencies.
 
 To get Docker:
  - [install Docker](https://docs.docker.com/installation/)
@@ -63,23 +61,21 @@ To get this image for yourself, you download the image and tell Docker to load i
  - `sudo docker load --input docker-matlab-activated.tar`
  - `rm docker-matlab-activated.tar`
 
+The `docker load` step will fail if your Docker is not configured to handle large images.
+
 Now Docker knows about our Matlab layer, which we will build upon in the next step.
 
 # 2. Mitsuba layer
-This layer might already live on Docker Hub.  In that case, you're all set!
+The Mitsuba layer will sit on top of the Matlab layer.  Building this layer will add the Mitsuba source code and two builds of Mitsuba -- one for multispectral rendering and one for RGB rendering.
 
-If not, here's how to build it.  Note that these instructions use my (Ben's) Docker Hub account name `ninjaben`.  You might need to change this to your own account name†.
+The build may take a while because compiling Mitsuba takes a while, and we do it twice. 
  - `cd render-toolbox-docker/mitsuba`
  - `sudo docker build -t ninjaben/render-toolbox-docker-mitsuba:latest .`
- - `sudo docker login`
- - # enter Docker Hub credientials
- - `sudo docker push ninjaben/render-toolbox-docker-mitsuba:latest`
 
-
-† If you do change the user name, you must also change the user name at the top of the Dockerfile to match.  For example, change `FROM ninjaben/matlab:activated` to `FROM YOUR_NAME/matlab:activated`.
+This should result in source code and builds under the `/mitsuba` folder, as well as a few executable scripts in `/usr/local/bin`.
 
 # 3. pbrt-v2-spectral layer
-This layer might already live on Docker Hub.  In that case, you're all set!
+The 
 
 If not, here's how to build it.  Note that these instructions use my (Ben's) Docker Hub account name `ninjaben`.  You might need to change this to your own account name†.
  - `cd render-toolbox-docker/pbrt-v2-spectral`
