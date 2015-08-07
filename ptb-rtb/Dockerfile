@@ -2,6 +2,8 @@ FROM ninjaben/render-toolbox-docker-pbrt-v2-spectral:latest
 
 MAINTAINER Ben Heasly <benjamin.heasly@gmail.com>
 
+WORKDIR /home/docker
+
 ### clone PTB
 RUN git clone https://github.com/Psychtoolbox-3/Psychtoolbox-3.git
 
