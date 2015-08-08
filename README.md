@@ -94,7 +94,7 @@ This build should only take a few minutes.
 Once all four layers are in place, you should be able to launch a Docker container based on the last layer.
 
 This should launch a docker container based on our last layer, and give you command line access inside it.
- - `sudo docker run -t -i --mac-address e4:ce:8f:60:8f:0a -v ~/render-toolbox:/home/docker/matlab/render-toolbox ninjaben/render-toolbox-docker-ptb-rtb:latest "/bin/bash"`
+ - `sudo docker run -t -i --mac-address e4:ce:8f:60:8f:0a -v ~/render-toolbox:/matlab-work/render-toolbox ninjaben/render-toolbox-docker-ptb-rtb:latest "/bin/bash"`
 
 Note: the `--mac-address e4:ce:8f:60:8f:0a` part is necessary to work with our Matlab license.
 
