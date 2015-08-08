@@ -123,3 +123,6 @@ Now you can easily download the `.tar` them from the S3 web interface.
 
 Note: in this example, `render-toolbox-test-output` is an S3 "bucket", which I (Ben) have permission to write to.  You should create your own bucket ans use your own bucket name.  For example:
  - `aws s3 cp test-renderings.tar.gz s3://YOUR_OWN_BUCKET/docker/test-renderings.tar.gz`
+
+# Save a new Docker Image
+TODO: now that it works, why not save a new Docker Imgage and push it to S3?
