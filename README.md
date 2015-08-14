@@ -18,7 +18,7 @@ If you are running Docker in the cloud, you should do all this once, then save a
 ### Linux Flavors
 The instructions here should work for Ubuntu.
 
-The instructions *almost* work on Amazon Linux, but we would have to figure out how to install `aufs` on Amazon Linux.  `aufs` is needed for large Docker images like our Matlab layer.  This layer is large because Matlab is large.
+The instructions *almost* work on Amazon Linux, but we would have to figure out how to install the `aufs` file system on Amazon Linux.  `aufs` is needed for large Docker images like our Matlab layer.  This layer is large because Matlab is large.
 
 # Dependencies
 
@@ -54,7 +54,7 @@ To get this repository:
 # 1. Matlab layer
 The Matlab layer is unusual.  It's a docker image that I (Ben) created by interactively installing Matlab inside Docker.  The result is about 16GB, which is too big for normal Docker workflows involving Docker Hub.
 
-Instead, I manually saved this image and put it on Amazon S3.
+Instead, I manually saved this image and put it on Amazon S3.  It is not available to the general public, because Matlab is non-free.
 
 To get this image for yourself, you download the image and tell Docker to load it:
  - `aws s3 cp s3://render-toolbox-docker-matlab/docker-matlab-activated.tar docker-matlab-activated.tar`
