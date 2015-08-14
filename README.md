@@ -125,4 +125,11 @@ Note: in this example, `render-toolbox-test-output` is an S3 "bucket", which I (
  - `aws s3 cp test-renderings.tar.gz s3://YOUR_OWN_BUCKET/docker/test-renderings.tar.gz`
 
 # Save a new Docker Image
-TODO: now that it works, why not save a new Docker Imgage and push it to S3?
+If everything above worked, you should now save a machine image (like an Amazon AMI) so you don't have to repeat all these steps for your next rendering.
+
+You can also save a new Docker image.  It will be too large to push to Docker Hub, but you can still tell Docker to save the image to a `.tar`, and push the `.tar` to S3:
+ - `sudo docker save --output render-toolbox-docker-ptb-rtb.tar ninjaben/render-toolbox-docker-ptb-rtb:latest`
+ - `aws s3 cp render-toolbox-docker-ptb-rtb.tar s3://render-toolbox-docker-matlab/render-toolbox-docker-ptb-rtb.tar`
+ - `rm render-toolbox-docker-ptb-rtb.tar`
+
+This will allow you to `load` the Docker image anywhere, like you did with the Matlab layer above.
