@@ -96,11 +96,11 @@ Once all four layers are in place, you should be able to launch a Docker contain
 This should launch a docker container based on our last layer, and give you command line access inside it.
  - `sudo docker run -t -i --mac-address e4:ce:8f:60:8f:0a -v ~/render-toolbox:/matlab-work/render-toolbox ninjaben/render-toolbox-docker-ptb-rtb:latest "/bin/bash"`
 
-Note: the `--mac-address e4:ce:8f:60:8f:0a` part is necessary to work with our Matlab license.
+Note: the `--mac-address e4:ce:8f:60:8f:0a` part is necessary to work with my (Ben's) Matlab license.  This is baked into the Matlab layer above, which is not available to the general public.
 
 Note: the `-v ~/render-toolbox:/home/docker/matlab/render-toolbox` part gives the Docker container access to the host file system.  This will allow you to access RenderToolbox3 outputs.
 
-Once you're in, you should have command line access inside the Docker container.  Try launching Matlab.  The following command will launch a non-interactive Matlab session.  It should run some RenderToolbox3 configuration, render some tests scenes, then exit:
+Once you're in, you should have command line access inside the Docker container.  Try launching Matlab.  The following command will launch a non-interactive Matlab session, run some RenderToolbox3 configuration, render some tests scenes, then exit:
  - `matlab -nodesktop -nosplash -r "RenderToolboxDockerConfig, RenderToolbox3InstallationTest, exit"`
 
 When this is done, you can exit the Docker container and let it shut down.
@@ -114,14 +114,14 @@ If you're doing all this on your local workstation, you can go and look at the r
 # Get the Output
 If you're doing all this from a cloud instance, you need a way to download the rendered images before you can look at them.
 
-You can push the rendered images to an Amazon S3 "bucket".  :
+You can push all the rendered images in `~/render-toolbox` to an Amazon S3 "bucket".:
  - `cd ~`
  - `tar -czpf test-renderings.tar.gz render-toolbox/`
  - `aws s3 cp test-renderings.tar.gz s3://render-toolbox-test-output/docker/test-renderings.tar.gz`
 
-Now you can easily download the `.tar` them from the S3 web interface.
+Now you can use the S3 web interface to download the `.tar.gz`, then open it locally.
 
-Note: in this example, `render-toolbox-test-output` is an S3 "bucket", which I (Ben) have permission to write to.  You should create your own bucket ans use your own bucket name.  For example:
+Note: in this example, `render-toolbox-test-output` is an S3 "bucket", which I (Ben) have permission to write to.  You should create your own bucket and use your own bucket name.  For example:
  - `aws s3 cp test-renderings.tar.gz s3://YOUR_OWN_BUCKET/docker/test-renderings.tar.gz`
 
 # Save a new Docker Image
