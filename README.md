@@ -132,4 +132,4 @@ You can also save a new Docker image.  It will be too large to push to Docker Hu
  - `aws s3 cp render-toolbox-docker-ptb-rtb.tar s3://render-toolbox-docker-matlab/render-toolbox-docker-ptb-rtb.tar`
  - `rm render-toolbox-docker-ptb-rtb.tar`
 
-This will allow you to `load` the Docker image anywhere, like you did with the Matlab layer above.
+This will take a while.  But it will allow you to `load` the Docker image anywhere, like you did with the Matlab layer above.
