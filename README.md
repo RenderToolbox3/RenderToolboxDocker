@@ -60,7 +60,7 @@ Set up your AWS account and configure the command line tool with your credential
  - # enter your credentials
 
 To get this repository:
- - `git clone https://github.com/benjamin-heasly/render-toolbox-docker.git`
+ - `git clone https://github.com/RenderToolbox3/RenderToolboxDocker.git`
  - `cd render-toolbox-docker`
 
 # 1. Matlab layer
