@@ -26,11 +26,23 @@ On your local machine or cloud instance, you need to get a few dependencies.
 
 First of all, you'll need at least 30GB of free space.
 
-To get Docker:
- - [install Docker](https://docs.docker.com/installation/)
-   - on ubuntu: make sure Docker is up to date and able to accommodate large images.  We have some instructions [here](https://github.com/DavidBrainard/RenderToolboxDevelop/wiki/Matlab-on-Docker-and-EC2#ssh-to-ec2-instance-and-install-docker-with-support-for-large-containers)).
-   - on amazon linux: `sudo yum install docker`
+To get Docker on Ubuntu, with `aufs` support:
+```
+sudo apt-get update
+sudo apt-get -y install linux-image-extra-$(uname -r)
+sudo sh -c "wget -qO- https://get.docker.io/gpg | apt-key add -"
+sudo sh -c "echo deb http://get.docker.io/ubuntu docker main\ > /etc/apt/sources.list.d/docker.list"
+sudo apt-get update
+sudo apt-get -y install lxc-docker
+sudo docker info
+sudo service docker start
+```
+
+To get Docker on Amazon Linux would be:
+ - `sudo yum install docker`
  - `sudo service docker start`
+
+But this this doesn't include `aufs` support, so it won't work yet.
 
 To get Git: 
  - [install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
