@@ -10,5 +10,8 @@ RUN git clone https://github.com/Psychtoolbox-3/Psychtoolbox-3.git
 WORKDIR /render-toolbox
 RUN git clone https://github.com/RenderToolbox3/RenderToolbox3
 
-### add config file
+### add RenderToolbox3 config file
 ADD RenderToolboxDockerConfig.m RenderToolboxDockerConfig.m
+
+### let Matlab JVM use 2GB heap memory
+ADD java.opts /usr/local/MATLAB/R2015a/bin/glnxa64/java.opts
