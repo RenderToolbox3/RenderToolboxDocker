@@ -6,13 +6,13 @@ MAINTAINER Ben Heasly <benjamin.heasly@gmail.com>
 WORKDIR /psychtoolbox
 RUN git clone https://github.com/Psychtoolbox-3/Psychtoolbox-3.git
 
-### clone RTB3
-WORKDIR /render-toolbox
-RUN git clone https://github.com/RenderToolbox3/RenderToolbox3
-
 ### clone Sphere Renderer toolbox
 WORKDIR /sphere-renderer-toolbox
 RUN git clone https://github.com/RenderToolbox3/SphereRendererToolbox.git
+
+### clone RTB3
+WORKDIR /render-toolbox
+RUN git clone https://github.com/RenderToolbox3/RenderToolbox3
 
 ### add RenderToolbox3 config file
 ADD RenderToolboxDockerConfig.m RenderToolboxDockerConfig.m
