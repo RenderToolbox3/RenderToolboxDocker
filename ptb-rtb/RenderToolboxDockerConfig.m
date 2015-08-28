@@ -33,6 +33,7 @@ userpath(matlabUserPath);
 %% Add toolboxes to the Matlab path.
 addpath(genpath('/psychtoolbox'));
 addpath(genpath('/render-toolbox'));
+addpath(genpath('/sphere-renderer-toolbox'));
 CleanMatlabPath();
 
 %% Start with RenderToolbox3 "fresh out of the box" configuration.
